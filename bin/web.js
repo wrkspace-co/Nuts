@@ -2,9 +2,32 @@ var express = require('express');
 var uuid = require('uuid');
 var basicAuth = require('basic-auth');
 var Analytics = require('analytics-node');
+var cors = require('cors');
 var nuts = require('../');
+require('dotenv').config();
 
 var app = express();
+
+// Parse allowed origins from the .env file
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim())
+  : [];
+
+// Set up CORS middleware with custom origin function
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (e.g., curl, mobile apps)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      // Origin not allowed
+      var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    // Origin allowed
+    return callback(null, true);
+  }
+}));
 
 var apiAuth =  {
     username: process.env.API_USERNAME,
