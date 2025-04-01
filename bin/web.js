@@ -61,7 +61,6 @@ myNuts.before('api', function(access, next) {
     };
 
     var user = basicAuth(access.req);
-    console.log('authentication', user)
     if (!user || !user.name || !user.pass) {
         return unauthorized();
     };
