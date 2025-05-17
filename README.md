@@ -1,6 +1,6 @@
 # Nuts
 
-Nuts is a simple (and smart) application to serve desktop-application releases.
+This is a clone from ![GitbookIO/nuts](https://github.com/GitbookIO/nuts) with support for macOS amd64, arm64 and universal endpoints support.
 
 ![Schema](./docs/schema.png)
 
