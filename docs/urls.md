@@ -2,6 +2,9 @@
 
 Nuts provides urls to access releases assets. These assets are cached on the disk.
 
+By default, `/download` serves assets from the `stable` channel. To request
+another channel such as `beta`, prefix the URL with `/download/channel/<channel>`.
+
 * Latest version for detected platform: `http://download.myapp.com/download`
 * Latest version for specific platform: `http://download.myapp.com/download/osx`
 * Specific version for detected platform: `http://download.myapp.com/download/1.1.0`
