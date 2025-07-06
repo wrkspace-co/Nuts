@@ -8,6 +8,10 @@ The endpoint for **Squirrel.Mac** is `http://download.myapp.com/update/osx/:curr
 
 This url requires different parameters to return a correct version: `version` and `platform`.
 
+By default, this endpoint only serves releases from the `stable` channel. To
+use another channel (for example `beta`), call
+`http://download.myapp.com/update/channel/<channel>/osx/:currentVersion`.
+
 ### Electron Example
 
 For example with Electron's `auto-updater` module:
