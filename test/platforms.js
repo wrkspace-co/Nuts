@@ -5,15 +5,25 @@ describe('Platforms', function() {
 
     describe('Detect', function() {
 
-        it('should detect osx_64', function() {
+        it('should detect osx architectures', function() {
             platforms.detect('myapp-v0.25.1-darwin-x64.zip').should.be.exactly(platforms.OSX_64);
-            platforms.detect('myapp.dmg').should.be.exactly(platforms.OSX_64);
+            platforms.detect('myapp.dmg').should.be.exactly(platforms.OSX_UNIVERSAL);
         });
 
         it('should detect windows_32', function() {
             platforms.detect('myapp-v0.25.1-win32-ia32.zip').should.be.exactly(platforms.WINDOWS_32);
             platforms.detect('atom-1.0.9-delta.nupkg').should.be.exactly(platforms.WINDOWS_32);
             platforms.detect('RELEASES').should.be.exactly(platforms.WINDOWS_32);
+        });
+
+        it('should detect windows_64', function() {
+            platforms.detect('myapp-v0.25.1-win32-x64.zip').should.be.exactly(platforms.WINDOWS_64);
+            platforms.detect('win32_x64').should.be.exactly(platforms.WINDOWS_64);
+        });
+
+        it('should detect windows_arm64', function() {
+            platforms.detect('myapp-v0.25.1-win32-arm64.zip').should.be.exactly(platforms.WINDOWS_ARM64);
+            platforms.detect('win32_arm64').should.be.exactly(platforms.WINDOWS_ARM64);
         });
 
         it('should detect linux', function() {
